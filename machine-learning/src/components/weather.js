@@ -5,23 +5,25 @@ import kelvinToCelsius from '../utils/celsius';
 import { FaTemperatureHigh } from "react-icons/fa6";
 import { WiHumidity } from "react-icons/wi";
 import { MdVisibility } from "react-icons/md";
-import { BsSpeedometer,BsCloudsFill  } from "react-icons/bs";
+import { BsSpeedometer, BsCloudsFill } from "react-icons/bs";
 import { FaWind } from "react-icons/fa";
-import { LuSunrise,LuSunset  } from "react-icons/lu";
+import { LuSunrise, LuSunset } from "react-icons/lu";
 import Clock from '../components/clock';
 
-
-const Weather = () => {
+const Weather = ({ cityName }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const apiKey = 'a909bebdd9601c7069c0793acf5c48fc';
-  const city = 'Texas'
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
 
   useEffect(() => {
+    if (!cityName) return;
+
     const fetchWeatherData = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await axios.get(url);
         setWeatherData(response.data);
@@ -33,7 +35,7 @@ const Weather = () => {
     };
 
     fetchWeatherData();
-  }, [url]);
+  }, [cityName]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -53,10 +55,10 @@ const Weather = () => {
       {weatherData && (
         <>
           <div className='row'>
-            <h3>{city}</h3>
+            <h3>{cityName}</h3>
           </div>
           <div className='row'>
-            <Clock/>
+            <Clock />
           </div>
           <div className='row'> 
             <img src={iconUrl} alt="Weather icon" />
@@ -71,18 +73,18 @@ const Weather = () => {
           </div>
           <div className='row'>
             <div className='sunrise'>
-              <LuSunrise/>
+              <LuSunrise />
               <p>{sunrise}</p>
             </div>
             <div className='sunrise'>
-              <LuSunset/>
+              <LuSunset />
               <p>{sunset}</p>
             </div>
           </div>
           <div className='row'>
             <div className='border-content'>
               <div className='row'>
-                <FaTemperatureHigh/>
+                <FaTemperatureHigh />
                 <p>FEELS LIKE</p>
               </div>
               <div className='row'>
@@ -90,53 +92,53 @@ const Weather = () => {
               </div>
             </div>
             <div className='border-content'>
-                <div className='row'>
-                  <WiHumidity/>
-                  <p>HUMIDITY</p>
-                </div>
-                <div className='row'>
-                  <p className='temp-border'>{weatherData.main.humidity} %</p>
-                </div>
+              <div className='row'>
+                <WiHumidity />
+                <p>HUMIDITY</p>
+              </div>
+              <div className='row'>
+                <p className='temp-border'>{weatherData.main.humidity} %</p>
+              </div>
             </div>
           </div>
           <div className='row'>
             <div className='border-content'>
-                <div className='row'>
-                  <MdVisibility/>
-                  <p>VISIBILITY</p>
-                </div>
-                <div className='row'>
-                  <p className='temp-border'>{weatherData.visibility / 1000} km</p>
-                </div>
+              <div className='row'>
+                <MdVisibility />
+                <p>VISIBILITY</p>
+              </div>
+              <div className='row'>
+                <p className='temp-border'>{weatherData.visibility / 1000} km</p>
+              </div>
             </div>
             <div className='border-content'>
-                <div className='row'>
-                  <BsSpeedometer/>
-                  <p>PRESSURE</p>
-                </div>
-                <div className='row'>
-                  <p className='temp-border'>{weatherData.main.pressure} hPa</p>
-                </div>
+              <div className='row'>
+                <BsSpeedometer />
+                <p>PRESSURE</p>
+              </div>
+              <div className='row'>
+                <p className='temp-border'>{weatherData.main.pressure} hPa</p>
+              </div>
             </div>
           </div>
           <div className='row'>
             <div className='border-content'>
-                <div className='row'>
-                  <FaWind/>
-                  <p>WIND</p>
-                </div>
-                <div className='row'>
-                  <p className='temp-border'>{weatherData.wind.speed} m/s</p>
-                </div>
+              <div className='row'>
+                <FaWind />
+                <p>WIND</p>
+              </div>
+              <div className='row'>
+                <p className='temp-border'>{weatherData.wind.speed} m/s</p>
+              </div>
             </div>
             <div className='border-content'>
-                <div className='row'>
-                  <BsCloudsFill/>
-                  <p>COVERAGE</p>
-                </div>
-                <div className='row'>
-                  <p className='temp-border'>{weatherData.clouds.all} %</p>
-                </div>
+              <div className='row'>
+                <BsCloudsFill />
+                <p>COVERAGE</p>
+              </div>
+              <div className='row'>
+                <p className='temp-border'>{weatherData.clouds.all} %</p>
+              </div>
             </div>
           </div>
         </>

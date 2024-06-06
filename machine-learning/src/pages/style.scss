@@ -67,6 +67,7 @@ body {
 .col-9 {
     flex: 0 0 75%;
     max-width: 75%;
+    position: relative;
 }
 
 .col-3 {
@@ -138,6 +139,43 @@ body {
     height: 70vh;
 }
 .search-box{
+    display: flex;
+    flex-direction: row;
     width: 50vw;
+    margin-top:20px;
     margin-bottom: 10px;
+    position: relative;
+}
+.result-list {
+    position: absolute;
+    top: 80px; /* Điều chỉnh để phù hợp với vị trí của khung tìm kiếm */
+    width: 80%;
+    max-height: 200px; /* Tùy chỉnh chiều cao tối đa */
+    overflow-y: auto; /* Thêm thanh cuộn nếu danh sách quá dài */
+    border: 1px solid #ccc; /* Tùy chọn: Thêm viền để phân biệt */
+    background-color: #fff; /* Tùy chọn: Màu nền cho danh sách */
+    z-index: 1000; /* Đảm bảo danh sách xuất hiện trên cùng */
+    .MuiListItem-root {
+        height: 50px;
+        .MuiButtonBase-root{
+            height: 100%;
+        }
+        .MuiListItemIcon-root{
+            height: 100%;
+            svg{
+                color: map-get($theme-colors, 'green' );
+                width: 25px;
+                height: 25px
+            }
+        }
+    };
+    
+.leaflet-control-zoom-in{
+    z-index: 100;
+}
+.leaflet-control-zoom-out{
+    z-index: 100;
+}
+
+
 }
