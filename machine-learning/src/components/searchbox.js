@@ -1,8 +1,9 @@
 import React from "react";
+import { OutlinedInput } from '@mui/material';
 
 const SearchBox = () => {
     return(
-        <div>SearchBox</div>
+        <OutlinedInput/>
     )
 }
 

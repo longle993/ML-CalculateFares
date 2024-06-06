@@ -133,3 +133,11 @@ body {
         color: map-get($theme-colors, "green" );
     }
 }
+.map{
+    width: 50vw;
+    height: 70vh;
+}
+.search-box{
+    width: 50vw;
+    margin-bottom: 10px;
+}
