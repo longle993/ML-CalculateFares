@@ -8,7 +8,6 @@ import { MdVisibility } from "react-icons/md";
 import { BsSpeedometer, BsCloudsFill } from "react-icons/bs";
 import { FaWind } from "react-icons/fa";
 import { LuSunrise, LuSunset } from "react-icons/lu";
-import Clock from '../components/clock';
 
 const Weather = ({ cityName }) => {
   const [weatherData, setWeatherData] = useState(null);
@@ -57,9 +56,6 @@ const Weather = ({ cityName }) => {
           <div className='row'>
             <h3>{cityName}</h3>
           </div>
-          <div className='row'>
-            <Clock />
-          </div>
           <div className='row'> 
             <img src={iconUrl} alt="Weather icon" />
             <h5>{kelvinToCelsius(weatherData.main.temp)}°C</h5>
@@ -71,7 +67,7 @@ const Weather = ({ cityName }) => {
             <p className='high'>H: {kelvinToCelsius(weatherData.main.temp_max)} °C</p>
             <p className='low'>L: {kelvinToCelsius(weatherData.main.temp_min)} °C</p>
           </div>
-          <div className='row'>
+          {/* <div className='row'>
             <div className='sunrise'>
               <LuSunrise />
               <p>{sunrise}</p>
@@ -80,7 +76,7 @@ const Weather = ({ cityName }) => {
               <LuSunset />
               <p>{sunset}</p>
             </div>
-          </div>
+          </div> */}
           <div className='row'>
             <div className='border-content'>
               <div className='row'>
