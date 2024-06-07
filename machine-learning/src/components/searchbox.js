@@ -2,13 +2,8 @@ import React, { useEffect } from 'react';
 import { OutlinedInput } from '@mui/material';
 
 const NOMINATIM_BASE_URL = 'https://nominatim.openstreetmap.org/search?';
-const params = {
-    q: '',
-    format: 'json',
-    addressdetails: 'addressdetails'
-};
 
-const SearchBox = ({ value, onChange, onPlacesChanged }) => {
+const SearchBox = ({ value, onChange, onPlacesChanged,placeholder }) => {
     useEffect(() => {
         if (!value) {
             onPlacesChanged([]);
@@ -49,7 +44,7 @@ const SearchBox = ({ value, onChange, onPlacesChanged }) => {
         <OutlinedInput 
             fullWidth={true}
             multiline={false}
-            placeholder='Enter the destination you want to go to...'
+            placeholder={placeholder}
             value={value}
             onChange={(event) => onChange(event.target.value)}
         />
